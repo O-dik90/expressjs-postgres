@@ -24,12 +24,13 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", async (req, res) => {
-  var distance = 5
-  await pool.query(`INSERT INTO distance (desc, distance) VALUES("test", ${distance}) `, (err, result) => {
+  var data = {desc: "new post", distance: 5}
+  await pool.query("INSERT INTO distance SET ?",data, (err, result) => {
     if (err) {
-      throw err;
+      res.send(err);
+    } else {
+      res.send(result);
     }
-    res.redirect('api/get');
   });
 });
 
