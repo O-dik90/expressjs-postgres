@@ -29,6 +29,7 @@ app.post("/api/post", async (req, res) => {
     if (err) {
       throw err;
     }
+    resp.redirect('api/get');
   });
 });
 
