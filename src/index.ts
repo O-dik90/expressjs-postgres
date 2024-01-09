@@ -24,7 +24,6 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
-  pool.query("INSERT INTO termo (desc, humidity, termometer) VALUES ('test company', 9, 6)")
   res.send("ok!")
 });
 
