@@ -23,6 +23,12 @@ app.get("/api", async (req, res) => {
   res.send(rows);
 });
 
+app.post("/api/:id", async (req, res) => {
+  var distance = req.params.id
+  const {rows} = await pool.query(`INSERT INSTO distance(desc, distance) VALUES('test', ${distance})`);
+  res.send(rows);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
