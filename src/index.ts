@@ -31,7 +31,7 @@ app.post("/api/post", (req, res) => {
     if (err) {
       throw err;
     } else {
-      res.send(result);
+      res.send("Post");
     }
   })
 });
