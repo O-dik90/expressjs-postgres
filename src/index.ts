@@ -27,7 +27,7 @@ app.post("/api/post", (req, res) => {
   const desc = req.body.desc;
   const distance = req.body.distance;
   
-  pool.query("insert into distance values(?,?)",[desc,distane], (err, result) =>{
+  pool.query("INSERT INTO distance (desc, distance) VALUES ('test company', 6)", (err, result) =>{
     if (err) {
       throw err;
     } else {
