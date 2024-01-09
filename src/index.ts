@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
   res.send(`Hello world!`);
 });
 
-app.get("/api", (req, res) => {
+app.get("/api", async (req, res) => {
   const {rows} = await pool.query("SELECT * FROM distance");
   res.send(rows);
 });
