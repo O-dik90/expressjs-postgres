@@ -24,14 +24,8 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
- 
-  pool.query("INSERT INTO termo (desc, humidity, termometer) VALUES ('test company', 9, 6)", (err, result) =>{
-    if (err) {
-      throw err;
-    } else {
-      res.send("Post");
-    }
-  })
+  pool.query("INSERT INTO termo (desc, humidity, termometer) VALUES ('test company', 9, 6)")
+  res.send("ok!")
 });
 
 app.listen(port, () => {
