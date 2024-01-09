@@ -23,10 +23,13 @@ app.get("/api", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/:id", async (req, res) => {
-  var distance = req.params.id
-  const {rows} = await pool.query(`INSERT INTO distance (desc, distance) VALUES("test", ${distance}) `);
-  res.send(rows);
+app.post("/api", async (req, res) => {
+  var distance = 5
+  await pool.query(`INSERT INTO distance (desc, distance) VALUES("test", ${distance}) `, (err, result) => {
+    if (err) {
+      throw err;
+    }
+  });
 });
 
 app.listen(port, () => {
