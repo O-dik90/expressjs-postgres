@@ -25,6 +25,7 @@ app.get("/api", async (req, res) => {
 
 app.post("/api/:id", async (req, res) => {
   var distance = req.params.id
+  const {rows} = await pool.query(`INSERT INTO distance (desc, distance) VALUES("test", ${distance}) `);
   res.send(`get id distance ${distance}`);
 });
 
