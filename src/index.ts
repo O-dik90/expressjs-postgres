@@ -23,15 +23,8 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/post", async (req, res) => {
-  var data = {desc: "new post", distance: 5}
-  await pool.query("INSERT INTO distance SET ?",data, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
+app.post("/api/post", (req, res) => {
+  res.send("post request!");
 });
 
 app.listen(port, () => {
