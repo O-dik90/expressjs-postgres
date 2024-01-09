@@ -23,7 +23,7 @@ app.get("/api", async (req, res) => {
   res.send(rows);
 });
 
-app.get("/api/:id", async (req, res) => {
+app.post("/api/:id", async (req, res) => {
   var distance = req.params.id
   res.send(`get id distance ${distance}`);
 });
