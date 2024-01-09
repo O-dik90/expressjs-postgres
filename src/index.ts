@@ -18,12 +18,12 @@ app.get("/", async (req, res) => {
   res.send(`Hello world!`);
 });
 
-app.get("/api", async (req, res) => {
+app.get("/api/get", async (req, res) => {
   const {rows} = await pool.query("SELECT * FROM distance");
   res.send(rows);
 });
 
-app.post("/api", async (req, res) => {
+app.post("/api/post", async (req, res) => {
   var distance = 5
   await pool.query(`INSERT INTO distance (desc, distance) VALUES("test", ${distance}) `, (err, result) => {
     if (err) {
