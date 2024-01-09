@@ -14,8 +14,8 @@ app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
 app.use(bodyParser.text({ type: "text/html" }));
 
 app.get("/", async (req, res) => {
-  const { rows } = await pool.query("SELECT NO()");
-  res.send(`Hello, World! The time from the DB is ${rows}.now`);
+  const { rows } = await pool.query("SELECT * FROM termo");
+  res.send(`Hello, World! The time from the DB is ${rows[0].id}`);
 });
 
 app.listen(port, () => {
