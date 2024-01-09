@@ -19,9 +19,8 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-  pool.query("SELECT * FROM distance", (error, result) => {
-    res.send(result.rows)
-  })
+  const {rows} = await pool.query("SELECT * FROM distance");
+  res.send(rows);
 });
 
 app.listen(port, () => {
