@@ -20,7 +20,7 @@ app.get("/", async (req, res) => {
 
 app.get("/api", (req, res) => {
   pool.query("SELECT * FROM distance", (error, result) => {
-    res.send(result)
+    res.send(result.rows)
   })
 });
 
