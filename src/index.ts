@@ -24,7 +24,7 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
-  res.send("ok!")
+  res.json({requestBody: req.body})
 });
 
 app.listen(port, () => {
