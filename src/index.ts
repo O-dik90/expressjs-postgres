@@ -18,6 +18,12 @@ app.get("/", async (req, res) => {
   res.send(`Hello world!`);
 });
 
+app.get("/api", (req, res) => {
+  pool.query("SELECT * FROM distance", (error, result) => {
+    res.send(result)
+  })
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
