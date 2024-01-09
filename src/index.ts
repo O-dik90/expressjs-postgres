@@ -23,10 +23,9 @@ app.get("/api", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/:id", async (req, res) => {
+app.get("/api/:id", async (req, res) => {
   var distance = req.params.id
-  const {rows} = await pool.query(`INSERT INSTO distance(desc, distance) VALUES('test', ${distance})`);
-  res.send(rows);
+  res.send(`get id distance ${distance}`);
 });
 
 app.listen(port, () => {
