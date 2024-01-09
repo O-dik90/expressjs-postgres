@@ -24,7 +24,12 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
-  res.json({requestBody: req.body})
+  const data = req.body
+  const sql = 'INSERT INTO distance SET ?'
+  pool.query(sql, data, (err, result) => {
+    if (err) throw err;
+    res.send("posted!");
+  })
 });
 
 app.listen(port, () => {
