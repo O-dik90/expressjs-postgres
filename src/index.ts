@@ -43,7 +43,7 @@ app.post("/api/post1", (req, res) => {
     }
     else {
       res.status(400).send(err.message);
-      throw error;
+      throw err;
     }
   });
 });
