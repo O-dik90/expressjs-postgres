@@ -23,12 +23,12 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/post", (req, res) => {
-  pool.query("SELECT * FROM distance", (err,result) => {
+app.post("/api/post", async (req, res) => {
+  await pool.query("SELECT * FROM termo", (err,result) => {
     if (err) {
-      res.send(err);
+      res.status(400).send(err);
     } else {
-      res.json(result);
+      res.status(200).send(result);
     }
   });
 });
