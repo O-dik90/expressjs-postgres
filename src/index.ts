@@ -24,7 +24,7 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
-  const {rows} = await pool.query(`UPDATE distance SET desc= "wedfwef" where id = 1`)
+  const {rows} = await pool.query("SELECT * FROM distance where id =1")
   res.send(rows);
 });
 
