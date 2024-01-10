@@ -34,12 +34,12 @@ app.post("/api/post", async (req, res) => {
   });
 });
 
-app.post("/api/post1", (req, res) => {
+app.post("/api/post1", async (req, res) => {
   var keterangan = "new test";
   var sensor = "6";
   var status = "ok";
 
-  pool.query(`INSERT INTO dist (description, distance, status) VALUES ('${keterangan}', '${sensor}', '${status}')`, (err, result) => {
+ await pool.query(`INSERT INTO dist (description, distance, status) VALUES ('${keterangan}', '${sensor}', '${status}')`, (err, result) => {
     if (!err) {
       res.send(result);
     }
