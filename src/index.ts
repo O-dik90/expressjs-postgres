@@ -23,9 +23,14 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/post", async (req, res) => {
-  const {rows} = await pool.query(`SELECT * FROM distance where status ="ok"`);
-  res.send(rows);
+app.post("/api/post", (req, res) => {
+  pool.query(`SELECT * FROM distance where status ="ok"`, (err,result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.listen(port, () => {
