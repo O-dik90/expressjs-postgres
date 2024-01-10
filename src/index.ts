@@ -23,8 +23,8 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/post", (req, res) => {
-  const {rows} = await pool.query("SELECT * FROM distance");
+app.post("/api/post", async (req, res) => {
+  const {rows} = await pool.query("SELECT * FROM distance where id = 1");
   res.send(rows);
 });
 
