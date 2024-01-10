@@ -19,12 +19,12 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/api/get", async (req, res) => {
-  const {rows} = await pool.query("SELECT * FROM distance");
+  const {rows} = await pool.query("SELECT * FROM dist");
   res.send(rows);
 });
 
 app.post("/api/post", async (req, res) => {
-  const sql = "SELECT * FROM distance WHERE status = 'ok'";
+  const sql = "SELECT * FROM dist WHERE status = 'ok'";
   await pool.query(sql, (err,result) => {
     if (err) {
       res.status(400).send(err);
