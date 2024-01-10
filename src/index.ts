@@ -24,7 +24,7 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
-  pool.query(`SELECT * FROM distance where status ="ok"`, (err,result) => {
+  pool.query("SELECT * FROM distance", (err,result) => {
     if (err) {
       res.send(err);
     } else {
