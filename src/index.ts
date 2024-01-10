@@ -24,8 +24,8 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
-  const data = req.body
-  res.status(201).json({rows: req.body})
+  const {rows} = await pool.query("UPDATE distance SET desc='new test' where id = 1")
+  res.status(201).send(rows)
 });
 
 app.listen(port, () => {
