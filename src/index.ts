@@ -41,7 +41,7 @@ app.post("/api/post1", (req, res) => {
 
   pool.query(`INSERT INTO dist (description, distance, status) VALUES ('test', '5', 'ok')`, (err, result) => {
     if (!err) {
-      res.send(data);
+      res.send(result);
     }
     else {
       res.status(400).send(err.message);
