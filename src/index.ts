@@ -34,14 +34,16 @@ app.post("/api/post", async (req, res) => {
   });
 });
 
-app.post("/api/post1", async (req, res) => {
- const data = {status : "ok"};
-  const sql = `INSERT INTO dist (status) VALUES(?)`;
-  await pool.query(sql, ['ok'], (err,result) => {
-    if (err) {
-      res.status(404).send(err.message);
-    } else {
-      res.status(201).send(result);
+app.post("/api/post1", (req, res) => {
+  var data = [['test', '5', 'ok']];
+
+  pool.query('INSERT INTO nodetable (description, distance, status) VALUES ?', [data], (err, result) => {
+    if (!err) {
+      res.send(data);
+    }
+    else {
+      res.status(400).send(err.message);
+      throw error;
     }
   });
 });
