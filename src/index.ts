@@ -28,6 +28,11 @@ app.post("/api/post", async (req, res) => {
   res.send(rows);
 });
 
+app.put("/api/put", async (req, res) => {
+  const {rows} = await pool.query('UPDATE distance SET desc="update method" where status ="ok"');
+  res.send(rows);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
