@@ -35,7 +35,7 @@ app.post("/api/post", async (req, res) => {
 });
 
 app.post("/api/post1", async (req, res) => {
- const data = {status : "ok"}
+ const data = {status : "ok"};
   const sql = `INSERT INTO dist SET ?`;
   await pool.query(sql, [data], (err,result) => {
     if (err) {
