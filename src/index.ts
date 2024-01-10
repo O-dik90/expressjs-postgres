@@ -39,7 +39,7 @@ app.post("/api/post1", async (req, res) => {
   const sql = `INSERT INTO dist(id,desc,distance) VALUES(?,?,?)`;
   await pool.query(sql, [2,'test', '5'], (err,result) => {
     if (err) {
-      res.status(404).send(err);
+      res.status(404).send(err.message);
     } else {
       res.status(201).send(result);
     }
