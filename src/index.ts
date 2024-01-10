@@ -24,8 +24,18 @@ app.get("/api/get", async (req, res) => {
 });
 
 app.post("/api/post", async (req, res) => {
-  const status = "ok";
   const sql = "SELECT * FROM distance WHERE status = 'ok'";
+  await pool.query(sql, (err,result) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(result);
+    }
+  });
+});
+
+app.post("/api/post1", async (req, res) => {
+  const sql = "INSERT INTO dist(desc,distance) VALUES('test','2')";
   await pool.query(sql, (err,result) => {
     if (err) {
       res.status(400).send(err);
