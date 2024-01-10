@@ -35,9 +35,9 @@ app.post("/api/post", async (req, res) => {
 });
 
 app.post("/api/post1", (req, res) => {
-  var data = [['test', '5', 'ok']];
+  var data = [[,'test', '5', 'ok']];
 
-  pool.query('INSERT INTO nodetable (description, distance, status) VALUES ?', [data], (err, result) => {
+  pool.query('INSERT INTO nodetable (id,description, distance, status) VALUES ?', [data], (err, result) => {
     if (!err) {
       res.send(data);
     }
