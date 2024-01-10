@@ -39,7 +39,7 @@ app.post("/api/post1", (req, res) => {
   var sensor = "6";
   var status = "ok";
 
-  pool.query(`INSERT INTO dist (description, distance, status) VALUES (${keterangan}, ${sensor}, ${status})`, (err, result) => {
+  pool.query(`INSERT INTO dist (description, distance, status) VALUES ('${keterangan}', '${sensor}', '${status}')`, (err, result) => {
     if (!err) {
       res.send(result);
     }
