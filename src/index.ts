@@ -43,6 +43,10 @@ app.post("/api/update", (req, res) => {
   res.send("hello update");
 });
 
+app.delete("/api/dellete", (req, res) => {
+  res.send("delete");
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
