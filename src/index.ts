@@ -43,9 +43,9 @@ app.post("/api/update", (req, res) => {
   res.send("hello update");
 });
 
-app.delete("/api/dellete", (req, res) => {
+app.get("/api/delete", (req, res) => {
   res.send("delete");
-})
+});
 
 
 app.listen(port, () => {
