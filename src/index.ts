@@ -50,14 +50,8 @@ app.post("/api/post1", async (req, res) => {
   });
 });
 
-app.put("api/put", async (req, res) => {
-  await pool.query(`SELECT * FROM dist WHERE status = 'ok'`, (err, result) =>{
-    if (!err) {
-      res.status(201).send(result);
-    } else {
-      res.status(400).send(err.message);
-    }
-  });
+app.put("api/put", (req, res) => {
+  res.send('PUT METHOD');
 });
 
 
