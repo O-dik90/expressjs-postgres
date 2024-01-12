@@ -39,8 +39,8 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
-app.post("/update", async (req, res) => {
-  await res.send("hello update");
+app.post("/api/update", (req, res) => {
+  res.send("hello update");
 });
 
 
