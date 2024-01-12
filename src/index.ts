@@ -50,8 +50,8 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
-app.post("/api/:id", async (req, res) => {
-  var id = req.params.id;
+app.post("/api/update", async (req, res) => {
+  var id = 3;
   
   await res.send(id);
 });
