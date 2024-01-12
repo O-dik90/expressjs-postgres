@@ -40,7 +40,14 @@ app.post("/api/postAdd", async (req, res) => {
 });
 
 app.post("/api/post", (req, res) => {
-  res.send("Update Posting!");
+  pool.query(`SELECT * FROM dist WHERE id = 9`, (err, result) => {
+    if (err) {
+      res.send(err.message);
+      throw err;
+    } else {
+      res.send(result);
+    }
+  });
 });
 
 app.listen(port, () => {
