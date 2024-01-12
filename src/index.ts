@@ -34,7 +34,7 @@ app.post("/api/post", async (req, res) => {
   });
 });
 
-app.post("/api/post1", async (req, res) => {
+app.post("/api/postAdd", async (req, res) => {
   var keterangan = req.body.description;
   var sensor = req.body.distance;
   var status = req.body.status;
@@ -50,7 +50,7 @@ app.post("/api/post1", async (req, res) => {
   });
 });
 
-app.put("api/put", async(req, res) => {
+app.post("api/postUpdate", async(req, res) => {
   await pool.query(`UPDATE dist SET distance = 10 WHERE status = 'ok'`, (err, result) =>{
     if (!err) {
       res.status(201).send(result);
