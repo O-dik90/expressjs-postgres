@@ -39,8 +39,10 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
-app.get("/api", async (req, res) => {
-  const {rows} = await pool.query("SELECT * FROM dist WHERE id =9");
+app.post("/api/:id", async (req, res) => {
+  const id = req.params.id;
+  
+  const {rows} = await pool.query("SELECT * FROM dist WHERE id = " + id);
   res.send(rows);
 });
 
