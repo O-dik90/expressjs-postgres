@@ -19,7 +19,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/api/get", async (req, res) => {
-  const {rows} = await pool.query("SELECT * FROM dist");
+  const {rows} = await pool.query("SELECT * FROM measure");
   res.send(rows);
 });
 
@@ -28,7 +28,7 @@ app.post("/api/postAdd", async (req, res) => {
   var sensor = req.body.distance;
   var status = req.body.status;
 
- await pool.query(`INSERT INTO dist (description, distance, status) VALUES ('${keterangan}', '${sensor}', '${status}')`, (err, result) => {
+ await pool.query(`INSERT INTO measure (distance, status, description) VALUES ('${sensor}', '${status}','${keterangan}',)`, (err, result) => {
     if (!err) {
       res.status(201).send("posted!");
     }
@@ -40,7 +40,7 @@ app.post("/api/postAdd", async (req, res) => {
 });
 
 app.post("/api/post", async (req, res) => {
-  await pool.query(`SELECT * FROM dist WHERE id = 9`, (err, result) => {
+  await pool.query(`SELECT * FROM measure WHERE id = 9`, (err, result) => {
     if (err) {
       res.send(err.message);
       throw err;
