@@ -39,11 +39,11 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
-app.get("/api/update", async (req, res) => {
-  await res.send("delete");
+app.post("/api/update", async (req, res) => {
+  await res.send("update");
 });
 
-app.get("/api/delete", (req, res) => {
+app.delete("/api/delete", (req, res) => {
   res.send("delete");
 });
 
