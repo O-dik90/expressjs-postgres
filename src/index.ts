@@ -51,7 +51,7 @@ app.post("/api/postAdd", async (req, res) => {
 });
 
 app.post("api/postUpdate", async(req, res) => {
-  await pool.query(`UPDATE dist SET distance = 10 WHERE status = 'ok'`, (err, result) =>{
+  await pool.query(`UPDATE dist SET description = 'test put' WHERE id = '3'`,, (err, result) =>{
     if (!err) {
       res.status(201).send(result);
     } else {
