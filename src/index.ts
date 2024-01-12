@@ -52,6 +52,11 @@ app.get("/api/:id", async (req, res) => {
   });
 });
 
+app.put("/api/update/:id", (req, res) => {
+  var id = req.params.id;
+  res.send(`update id = ${id}`);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
