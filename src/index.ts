@@ -39,8 +39,8 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
-app.post("/api/post", (req, res) => {
-  pool.query(`SELECT * FROM dist WHERE id = 9`, (err, result) => {
+app.post("/api/post", async (req, res) => {
+  await pool.query(`SELECT * FROM dist WHERE id = 9`, (err, result) => {
     if (err) {
       res.send(err.message);
       throw err;
