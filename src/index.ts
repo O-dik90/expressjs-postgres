@@ -35,9 +35,9 @@ app.post("/api/post", async (req, res) => {
 });
 
 app.post("/api/post1", async (req, res) => {
-  var keterangan = "new test";
-  var sensor = "6";
-  var status = "ok";
+  var keterangan = req.body.description;
+  var sensor = req.body.distance;
+  var status = req.body.status;
 
  await pool.query(`INSERT INTO dist (description, distance, status) VALUES ('${keterangan}', '${sensor}', '${status}')`, (err, result) => {
     if (!err) {
@@ -49,6 +49,7 @@ app.post("/api/post1", async (req, res) => {
     }
   });
 });
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
