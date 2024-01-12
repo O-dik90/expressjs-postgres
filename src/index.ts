@@ -41,11 +41,21 @@ app.post("/api/post1", async (req, res) => {
 
  await pool.query(`INSERT INTO dist (description, distance, status) VALUES ('${keterangan}', '${sensor}', '${status}')`, (err, result) => {
     if (!err) {
-      res.send(result);
+      res.status(201)send("posted!");
     }
     else {
       res.status(400).send(err.message);
       throw err;
+    }
+  });
+});
+
+app.put("api/put", async(req, res) => {
+  await pool.query(`UPDATE dist SET distance = 10 WHERE status = 'ok'`, (err, result) =>{
+    if (!err) {
+      res.status(201).send(result);
+    } else {
+      res.status(400).send(err.message);
     }
   });
 });
