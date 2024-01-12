@@ -39,6 +39,10 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
+app.post("/api/post", (req, res) => {
+  res.send("Update Posting!");
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
