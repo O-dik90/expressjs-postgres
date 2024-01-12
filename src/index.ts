@@ -50,8 +50,8 @@ app.post("/api/post1", async (req, res) => {
   });
 });
 
-app.put("api/put", async(req, res) => {
-  await pool.query(`UPDATE dist SET distance = 10 WHERE status = 'ok'`, (err, result) =>{
+app.put("api/put", async (req, res) => {
+  await pool.query(`SELECT * FROM dist WHERE status = 'ok'`, (err, result) =>{
     if (!err) {
       res.status(201).send(result);
     } else {
