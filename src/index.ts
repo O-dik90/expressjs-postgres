@@ -39,17 +39,6 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
-app.post("/api", async (req, res) => {
- 
-  const {rows} = await pool.query("SELECT * FROM dist WHERE id = 9" );
-  res.send(rows);
-});
-
-app.delete("/api/delete", (req, res) => {
-  res.send("delete");
-});
-
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
