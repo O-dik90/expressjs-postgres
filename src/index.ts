@@ -23,17 +23,6 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/post", async (req, res) => {
-  const sql = "SELECT * FROM dist WHERE status = 'ok'";
-  await pool.query(sql, (err,result) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      res.status(200).send(result);
-    }
-  });
-});
-
 app.post("/api/postAdd", async (req, res) => {
   var keterangan = req.body.description;
   var sensor = req.body.distance;
