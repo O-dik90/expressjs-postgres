@@ -39,8 +39,10 @@ app.post("/api/postAdd", async (req, res) => {
   });
 });
 
-app.get("/api/post", async (req, res) => {
-  await pool.query(`SELECT * FROM measure WHERE id = 9`, (err, result) => {
+app.get("/api/:id", async (req, res) => {
+  var id = req.params.id;
+  
+  await pool.query(`SELECT * FROM measure WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.send(err.message);
       throw err;
