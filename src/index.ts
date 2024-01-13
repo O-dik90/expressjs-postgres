@@ -52,8 +52,8 @@ app.post("/api/:id", async (req, res) => {
   });
 });
 
-app.get("update", (req,res) =>{
-  res.status(201);
+app.get("/update", (req,res) =>{
+  res.status(201).send("update");
 })
 
 app.put("/api/update/:id", (req, res) => {
