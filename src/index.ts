@@ -23,7 +23,7 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/postAdd", async (req, res) => {
+app.get("/api/postAdd", async (req, res) => {
   var keterangan = req.body.description;
   var sensor = req.body.distance;
   var status = req.body.status;
