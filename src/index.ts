@@ -39,7 +39,7 @@ app.get("/api/postAdd", async (req, res) => {
   });
 });
 
-app.get("/api/:id", async (req, res) => {
+app.post("/api/:id", async (req, res) => {
   var id = req.params.id;
   
   await pool.query(`SELECT * FROM measure WHERE id = ${id}`, (err, result) => {
@@ -52,7 +52,7 @@ app.get("/api/:id", async (req, res) => {
   });
 });
 
-app.post("update", (req,res) =>{
+app.get("update", (req,res) =>{
   res.status(201);
 })
 
