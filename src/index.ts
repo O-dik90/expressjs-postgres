@@ -53,7 +53,7 @@ app.get("/api/:id", async (req, res) => {
 });
 
 app.put("/api/update/:id", (req, res) => {
-  var queryId = parseInt(req.params.id);
+  var id = parseInt(req.params.id);
   
   pool.query(`UPDATE "measure" SET "description" = $1`, ["check update"], (err, result) => {
     if (err) {
