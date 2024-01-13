@@ -52,14 +52,18 @@ app.post("/api/:id", async (req, res) => {
   });
 });
 
-app.put("/update", async (req,res) =>{
-  var id = 1;
- await pool.query(`UPDATE measure SET description = 'change method put' WHERE id = ${id}`, (err, result) => {
+app.put("/update/:id", async (req,res) =>{
+  var id = req.params.id;
+  var keterangan = req.body.description;
+  var sensor = req.body.distance;
+  var status = req.body.status;
+  
+  await pool.query(`UPDATE measure SET description = '${keterangan}', distance = '${sensor}', status = ${staus} WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
     }
-    res.status(201).send("update");
+    res.status(201).send(result);
   });
 });
 
