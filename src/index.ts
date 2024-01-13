@@ -23,7 +23,7 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.get("/api/postAdd", async (req, res) => {
+app.post("/api/postAdd", async (req, res) => {
   var keterangan = req.body.description;
   var sensor = req.body.distance;
   var status = req.body.status;
@@ -39,7 +39,7 @@ app.get("/api/postAdd", async (req, res) => {
   });
 });
 
-app.post("/api/:id", async (req, res) => {
+app.get("/api/:id", async (req, res) => {
   var id = req.params.id;
   
   await pool.query(`SELECT * FROM measure WHERE id = ${id}`, (err, result) => {
@@ -47,7 +47,7 @@ app.post("/api/:id", async (req, res) => {
       res.status(400).send(err.message);
       throw err;
     } else {
-      res.status(200).json({mesagge: "success post get data"});
+      res.status(200).send(result);
     }
   });
 });
