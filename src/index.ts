@@ -30,7 +30,7 @@ app.get("/api/postAdd", async (req, res) => {
 
  await pool.query(`INSERT INTO measure (distance, status, description) VALUES ('${sensor}', '${status}','${keterangan}')`, (err, result) => {
     if (!err) {
-      res.status(201).send("posted!");
+      res.status(201).json({mesagge: "success add new data"});
     }
     else {
       res.status(400).send(err.message);
@@ -44,10 +44,10 @@ app.post("/api/:id", async (req, res) => {
   
   await pool.query(`SELECT * FROM measure WHERE id = ${id}`, (err, result) => {
     if (err) {
-      res.status(201).send(err.message);
+      res.status(400).send(err.message);
       throw err;
     } else {
-      res.status(400).send(result);
+      res.status(200).json({mesagge: "success post get data"});
     }
   });
 });
@@ -63,7 +63,7 @@ app.put("/update/:id", async (req,res) =>{
       res.status(400).send(err.message);
       throw err;
     }
-    res.status(201).send(result);
+    res.status(201).json({mesagge: "success update data"});
   });
 });
 
