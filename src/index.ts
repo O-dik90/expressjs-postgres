@@ -44,17 +44,23 @@ app.post("/api/:id", async (req, res) => {
   
   await pool.query(`SELECT * FROM measure WHERE id = ${id}`, (err, result) => {
     if (err) {
-      res.send(err.message);
+      res.status(201).send(err.message);
       throw err;
     } else {
-      res.send(result);
+      res.status(400).send(result);
     }
   });
 });
 
 app.get("/update", (req,res) =>{
-  res.status(201).send("update");
-})
+  pool.query(`UPDATE measure SET description ? WHERE id = 1`, ["check update"], (err, result) => {
+    if (err) {
+      res.send(err.message);
+      throw err;
+    }
+    res.status(201).send("update");
+  });
+});
 
 app.put("/api/update/:id", (req, res) => {
   var id = parseInt(req.params.id);
