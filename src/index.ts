@@ -58,7 +58,7 @@ app.put("/update/:id", async (req,res) =>{
   var sensor = req.body.distance;
   var status = req.body.status;
   
-  await pool.query(`UPDATE measure SET description = '${keterangan}', distance = '${sensor}', status = ${staus} WHERE id = ${id}`, (err, result) => {
+  await pool.query(`UPDATE measure SET description = '${keterangan}', distance = '${sensor}', status = ${status} WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
