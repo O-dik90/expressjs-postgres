@@ -53,8 +53,15 @@ app.get("/api/:id", async (req, res) => {
 });
 
 app.put("/api/update/:id", (req, res) => {
-  var id = req.params.id;
-  res.send(`update id = ${id}`);
+  var queryId = parseInt(req.params.id);
+  
+  pool.query(`UPDATE "measure" SET "description" = $1`, ["check update"], (err, result) => {
+    if (err) {
+      res.send(err.message);
+      throw err;
+    }
+    res.send(`update id = ${id}`);
+  })
 });
 
 app.listen(port, () => {
