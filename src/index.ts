@@ -95,7 +95,7 @@ app.get("/api/relayget/:id", async (req, res) => {
       res.status(400).send(err.message);
       throw err;
     }
-    res.send(200).send(result.rows);
+    res.status(200).send(result.rows);
   });
 });
 
