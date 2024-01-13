@@ -53,7 +53,7 @@ app.post("/api/:id", async (req, res) => {
 });
 
 app.get("/update", (req,res) =>{
-  pool.query(`UPDATE measure SET description = "check update" WHERE id = 1`, (err, result) => {
+  pool.query(`UPDATE measure SET description = 'check update1' WHERE status = 'ok'`, (err, result) => {
     if (err) {
       res.send(err.message);
       throw err;
