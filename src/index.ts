@@ -52,7 +52,7 @@ app.get("/api/:id", async (req, res) => {
   });
 });
 
-app.put("/api/update/:id", async (req,res) =>{
+app.put("/api/update/:id", async (req,res) => {
   var id = req.params.id;
   var newKeterangan = req.body.description;
   var newSensor = req.body.distance;
@@ -67,6 +67,16 @@ app.put("/api/update/:id", async (req,res) =>{
   });
 });
 
+app.delete("/api/delete/:id", async (req, res) => {
+  var id = req.params.id;
+
+  await pool.query(`DELETE FROM measure WHERE id = ${id}`, (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+    }
+    res.status(201).json({ message: "success delete data" });
+  })
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
