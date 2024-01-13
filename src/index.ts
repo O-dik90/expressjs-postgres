@@ -52,9 +52,9 @@ app.post("/api/:id", async (req, res) => {
   });
 });
 
-app.post("/update", async (req,res) =>{
+app.put("/update", async (req,res) =>{
   var id = 1;
- await pool.query(`UPDATE measure SET description = 'check new update' WHERE id = ${id}`, (err, result) => {
+ await pool.query(`UPDATE measure SET description = 'change method put' WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
@@ -63,17 +63,6 @@ app.post("/update", async (req,res) =>{
   });
 });
 
-app.put("/api/update/:id", (req, res) => {
-  var id = parseInt(req.params.id);
-  
-  pool.query(`UPDATE "measure" SET "description" = $1`, ["check update"], (err, result) => {
-    if (err) {
-      res.send(err.message);
-      throw err;
-    }
-    res.send(`update id = ${id}`);
-  })
-});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
