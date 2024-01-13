@@ -52,6 +52,10 @@ app.get("/api/:id", async (req, res) => {
   });
 });
 
+app.post("update", (req,res) =>{
+  res.status(201);
+})
+
 app.put("/api/update/:id", (req, res) => {
   var id = parseInt(req.params.id);
   
