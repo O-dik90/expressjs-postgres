@@ -52,8 +52,9 @@ app.post("/api/:id", async (req, res) => {
   });
 });
 
-app.get("/update", (req,res) =>{
-  pool.query(`UPDATE measure SET description = 'check update1' WHERE status = 'ok'`, (err, result) => {
+app.get("/update", async (req,res) =>{
+  var id = 1;
+ await pool.query(`UPDATE measure SET description = 'check new update' WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.send(err.message);
       throw err;
