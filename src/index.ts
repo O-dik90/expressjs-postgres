@@ -47,7 +47,7 @@ app.get("/api/:id", async (req, res) => {
       res.status(400).send(err.message);
       throw err;
     } else {
-      res.status(200).send(result);
+      res.status(200).send(result.rows);
     }
   });
 });
