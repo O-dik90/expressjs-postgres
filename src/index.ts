@@ -23,7 +23,7 @@ app.get("/api/get", async (req, res) => {
   res.send(rows);
 });
 
-app.post("/api/postAdd", async (req, res) => {
+app.post("/api/add", async (req, res) => {
   var keterangan = req.body.description;
   var sensor = req.body.distance;
   var status = req.body.status;
@@ -52,7 +52,7 @@ app.get("/api/:id", async (req, res) => {
   });
 });
 
-app.put("/update/:id", async (req,res) =>{
+app.put("/api/update/:id", async (req,res) =>{
   var id = req.params.id;
   var newKeterangan = req.body.description;
   var newSensor = req.body.distance;
