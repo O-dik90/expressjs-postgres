@@ -102,7 +102,7 @@ app.put("/api/relayupdate/:id", async (req,res) => {
   var newKeterangan = req.body.description;
   var newValue = req.body.value;
   
-  await pool.query(`UPDATE relay SET description = '${newKeterangan}', value = '${newSensor}' WHERE id = ${id}`, (err, result) => {
+  await pool.query(`UPDATE relay SET description = '${newKeterangan}', value = '${newValue}' WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
