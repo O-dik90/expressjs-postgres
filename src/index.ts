@@ -78,7 +78,7 @@ app.delete("/api/delete/:id", async (req, res) => {
 
 app.post("/api/relayadd", async (req, res) => {
   
-  await pool.query(`INSERT INTO relay (value, description) VALUES (1, 'ok')`, (err, result) => {
+  await pool.query(`INSERT INTO relay (value, description) VALUES (True, 'ok')`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
