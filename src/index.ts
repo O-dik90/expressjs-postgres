@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
   res.send(`Hello world!`);
 });
 
-app.get("/api/get", async (req, res) => {
+app.get("/api/measure/get", async (req, res) => {
   const {rows} = await pool.query("SELECT * FROM measure");
   res.send(rows);
 });
@@ -29,13 +29,11 @@ app.post("/api/add", async (req, res) => {
   var status = req.body.status;
 
  await pool.query(`INSERT INTO measure (distance, status, description) VALUES ('${sensor}', '${status}','${keterangan}')`, (err, result) => {
-    if (!err) {
-      res.status(201).json({mesagge: "success add new data"});
-    }
-    else {
+    if (err) {
       res.status(400).send(err.message);
       throw err;
     }
+   res.status(201).json({mesagge: "success add new data"});
   });
 });
 
@@ -76,6 +74,41 @@ app.delete("/api/delete/:id", async (req, res) => {
     }
     res.status(201).json({ message: "success delete data" });
   })
+});
+
+app.post("/api/relayadd", async (req, res) => {
+  
+  await pool.query(`INSERT INTO relay (value, description) VALUES (1, 'ok')`, (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+      throw err;
+    }
+    res.status(201).json({mesagge: "success add new data relay"});
+  });
+});
+
+app.get("/api/relayget", async (req, res) => {
+  await pool.query(`SELECT * FROM relay`, (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+      throw err;
+    }
+    res.send(201).send(result.rows);
+  });
+});
+
+app.put("/api/relayupdate/:id", async (req,res) => {
+  var id = req.params.id;
+  var newKeterangan = req.body.description;
+  var newValue = req.body.value;
+  
+  await pool.query(`UPDATE relay SET description = '${newKeterangan}', value = '${newSensor}' WHERE id = ${id}`, (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+      throw err;
+    }
+    res.status(201).json({mesagge: "success update data relay"});
+  });
 });
 
 app.listen(port, () => {
