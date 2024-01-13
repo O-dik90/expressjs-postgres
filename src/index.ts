@@ -87,8 +87,10 @@ app.post("/api/relayadd", async (req, res) => {
   });
 });
 
-app.get("/api/relayget", async (req, res) => {
-  await pool.query(`SELECT * FROM relay`, (err, result) => {
+app.get("/api/relayget/:id", async (req, res) => {
+  var id = req.params.id;
+  
+  await pool.query(`SELECT * FROM relay where id = ${id}`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
