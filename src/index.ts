@@ -169,7 +169,7 @@ app.delete("/api/termodelete/:id", async (req, res) => {
 })
 
 app.delete("/api/alldatadelete", async (req, res) => {
-  await pool.query(`DELETE FROM measure, termo`. (err, result) => {
+  await pool.query(`DELETE FROM measure, termo`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
