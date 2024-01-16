@@ -148,7 +148,7 @@ app.put("/api/termoupdate/:id", async (req, res) => {
   var newUoM = req.body.satuan;
   var newStatus = false;
 
-  await pool.query(`UPDATE termo SET description = '{newKeterangan}', humidity = '${newKelembaban}', temperature = '${newSuhu}', ph= '${newPH}', satuan = '${newUoM}', status = '${newStatus}' WHERE id = ${id}`, (err, result) => {
+  await pool.query(`UPDATE termo SET description = '${newKeterangan}', humidity = '${newKelembaban}', temperature = '${newSuhu}', ph= '${newPH}', satuan = '${newUoM}', status = '${newStatus}' WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
       throw err;
