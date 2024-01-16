@@ -139,7 +139,7 @@ app.post("/api/termoadd", async (req, res) => {
   })
 })
 
-app.post("/api/termoupdate/:id", async (req, res) => {
+app.put("/api/termoupdate/:id", async (req, res) => {
   var id = req.params.id;
   var newKeterangan = req.body.description;
   var newKelembaban = req.body.humidity;
