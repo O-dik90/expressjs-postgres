@@ -123,7 +123,7 @@ app.get("/api/termoget", async (req, res) => {
   })
 })
 
-app.post("/api/termopost", async (req, res) => {
+app.post("/api/termoadd", async (req, res) => {
   var newKeterangan = req.body.description;
   var newKelembaban = req.body.humidity;
   var newSuhu = req.body.temperature;
