@@ -18,12 +18,12 @@ app.get("/", async (req, res) => {
   res.send(`Hello world!`);
 });
 
-app.get("/api/measure/get", async (req, res) => {
+app.get("/api/measureget", async (req, res) => {
   const {rows} = await pool.query("SELECT * FROM measure");
   res.send(rows);
 });
 
-app.post("/api/add", async (req, res) => {
+app.post("/api/measureadd", async (req, res) => {
   var keterangan = req.body.description;
   var sensor = req.body.distance;
   var status = req.body.status;
@@ -37,7 +37,7 @@ app.post("/api/add", async (req, res) => {
   });
 });
 
-app.get("/api/:id", async (req, res) => {
+app.get("/api/measure/:id", async (req, res) => {
   var id = req.params.id;
   
   await pool.query(`SELECT * FROM measure WHERE id = ${id}`, (err, result) => {
@@ -50,7 +50,7 @@ app.get("/api/:id", async (req, res) => {
   });
 });
 
-app.put("/api/update/:id", async (req,res) => {
+app.put("/api/measureupdate/:id", async (req,res) => {
   var id = req.params.id;
   var newKeterangan = req.body.description;
   var newSensor = req.body.distance;
@@ -65,14 +65,14 @@ app.put("/api/update/:id", async (req,res) => {
   });
 });
 
-app.delete("/api/delete/:id", async (req, res) => {
+app.delete("/api/measuredelete/:id", async (req, res) => {
   var id = req.params.id;
 
   await pool.query(`DELETE FROM measure WHERE id = ${id}`, (err, result) => {
     if (err) {
       res.status(400).send(err.message);
     }
-    res.status(201).json({ message: "success delete data" });
+    res.status(201).json({ message: "success delete data measure" });
   })
 });
 
@@ -112,6 +112,71 @@ app.put("/api/relayupdate/:id", async (req,res) => {
     res.status(201).json({mesagge: "success update data relay"});
   });
 });
+
+app.get("/api/termoget", async (req, res) => {
+  await pool.query(`SELECT * FROM termo`, (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+      throw err;
+    }
+    res.status(200).send(result.rows);
+  })
+})
+
+app.post("/api/termopost", async (req, res) => {
+  var newKeterangan = req.body.description;
+  var newKelembaban = req.body.humidity;
+  var newSuhu = req.body.temperature;
+  var newPH = req.body.pH;
+  var newUoM = req.body.satuan;
+  var newStatus = false;
+  
+  await pool.query(`INSERT INTO termo (description, humidity, temperature, ph, status, satuan) VALUES ('${newKeterangan}', ${newKelembaban}, '${newSuhu}','${newPH}', '${newStatus}', '${newUoM}')` ,(err, result) => {
+    if(err) {
+      res.status(400).send(err.message);
+    }
+    res.status(201).json({message : "success add new data termo"})
+  })
+})
+
+app.post("/api/termoupdate/:id", async (req, res) => {
+  var id = req.params.id;
+  var newKeterangan = req.body.description;
+  var newKelembaban = req.body.humidity;
+  var newSuhu = req.body.temperature;
+  var newPH = req.body.pH;
+  var newUoM = req.body.satuan;
+  var newStatus = false;
+
+  await pool.query(`UPDATE termo SET description = '{newKeterangan}', humidity = '${newKelembaban}', temperature = '${newSuhu}', ph= '${newPH}', satuan = '${newUoM}', status = '${newStatus}' WHERE id = ${id}`, (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+      throw err;
+    }
+    res.status(201).json({mesagge: "success update data termo"});
+  })
+})
+
+app.delete("/api/termodelete/:id", async (req, res) => {
+  var id =req.params.id;
+
+  await pool.query(`DELETE FROM termo WHERE id = ${id}`, (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+    }
+    res.status(201).json({ message: "success delete data termo" });
+  })
+})
+
+app.delete("/api/alldatadelete", async (req, res) => {
+  await pool.query(`DELETE FROM measure, termo`. (err, result) => {
+    if (err) {
+      res.status(400).send(err.message);
+      throw err;
+    }
+    res.status(201).json({message: "success delete all data from measure, termo"})
+  })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
