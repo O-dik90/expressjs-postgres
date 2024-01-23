@@ -9,10 +9,21 @@ const pool = new pg.Pool();
 const app = express();
 const port = process.env.PORT || 3333;
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
-app.use(bodyParser.text({ type: "text/html" }));
+const allowCrossDomain = (req, res, next) => {
+  res.header(`Access-Control-Allow-Origin`, `example.com`);
+  res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`);
+  res.header(`Access-Control-Allow-Headers`, `Content-Type`);
+  next();
+};
+
+app.configure(() => {
+  app.use(bodyParser.json());
+  app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
+  app.use(bodyParser.text({ type: "text/html" }));
+  app.use(allowCrossDomain);
+  app.use(app.router);
+  app.use(express.static(`public`));
+})
 
 app.get("/", async (req, res) => {
   const {rows} = await pool.query("SELECT NOW()");
