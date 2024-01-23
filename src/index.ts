@@ -9,21 +9,16 @@ const pool = new pg.Pool();
 const app = express();
 const port = process.env.PORT || 3333;
 
-const allowCrossDomain = (req, res, next) => {
-  res.header(`Access-Control-Allow-Origin`, `example.com`);
-  res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`);
-  res.header(`Access-Control-Allow-Headers`, `Content-Type`);
-  next();
-};
+app.use(bodyParser.json());
+app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
+app.use(bodyParser.text({ type: "text/html" }));
 
-app.configure(() => {
-  app.use(bodyParser.json());
-  app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
-  app.use(bodyParser.text({ type: "text/html" }));
-  app.use(allowCrossDomain);
-  app.use(app.router);
-  app.use(express.static(`public`));
-})
+app.all('/*', (req,res,next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 
 app.get("/", async (req, res) => {
   const {rows} = await pool.query("SELECT NOW()");
