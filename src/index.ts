@@ -6,9 +6,11 @@ import pg from "pg";
 //   variable injected by Railway
 const pool = new pg.Pool();
 
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3333;
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
 app.use(bodyParser.text({ type: "text/html" }));
