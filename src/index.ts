@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 import pg from "pg";
+import cors from "cors";
 
 // Connect to the database using the DATABASE_URL environment
 //   variable injected by Railway
